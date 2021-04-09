@@ -1,5 +1,7 @@
 # Overrides
 .vscode/
+.env
+one_line.py
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,vscode
