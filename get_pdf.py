@@ -5,8 +5,6 @@ from PyPDF2 import PdfFileWriter, PdfFileReader
 
 f = BytesIO()
 
-
-
 def get_pdf(month,day):
   response = requests.get(f"https://corbettmaths.com/wp-content/uploads/2019/03/{month}-Higher.pdf")
   input_file = PdfFileReader(BytesIO(response.content))
