@@ -2,6 +2,10 @@ import os
 import discord
 from get_pdf import get_pdf
 from dotenv import load_dotenv
+import datetime
+
+month = datetime.datetime.now().strftime("%B")
+day = datetime.datetime.now().strftime("%#d")
 
 load_dotenv()
 
@@ -18,7 +22,7 @@ async def on_message(message):
     return
     
   if message.content == '!corbett':
-    await message.channel.send(file=discord.File(get_pdf(), "5-A-Day.pdf"))   
+    await message.channel.send(file=discord.File(get_pdf(month,day), "5-A-Day.pdf"))   
 
 
 if TOKEN:

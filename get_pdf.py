@@ -1,15 +1,13 @@
 import urllib.request
-import datetime
 import requests
 from io import BytesIO, StringIO
 from PyPDF2 import PdfFileWriter, PdfFileReader
 
 f = BytesIO()
 
-month = datetime.datetime.now().strftime("%B")
-day = datetime.datetime.now().strftime("%#d")
 
-def get_pdf():
+
+def get_pdf(month,day):
   response = requests.get(f"https://corbettmaths.com/wp-content/uploads/2019/03/{month}-Higher.pdf")
   input_file = PdfFileReader(BytesIO(response.content))
   output_file = PdfFileWriter()
