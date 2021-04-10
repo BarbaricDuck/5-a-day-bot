@@ -65,7 +65,6 @@ Here is today's worksheet :D```''')
       
     await ctx.send(file=discord.File(get_pdf(month,day), f"5-A-Day ({month} {day}).pdf"))
 
-
 if TOKEN:
   bot.run(TOKEN)
 else:
