@@ -5,6 +5,7 @@ from get_pdf import get_pdf
 from dotenv import load_dotenv
 import datetime
 
+short_months = {'Dec':'December', 'Jan':'January', 'Feb':'Febuary', 'Mar':'March', 'Apr':'April', 'May':'May', 'Jun':'June', 'Jul':'July', 'Aug':'August', 'Sep':'September', 'Oct':'October', 'Nov':'November'}
 
 
 load_dotenv()
@@ -25,22 +26,40 @@ async def on_ready():
 #     
 
 @bot.command()
-async def corbett(ctx,arg):
+async def corbett(ctx,*args):
   if ctx.author == bot.user:
     return
-  
-  if arg == 'today':
-    month = datetime.datetime.now().strftime("%B")
-    day = datetime.datetime.now().strftime("%#d")
-    
-    await ctx.send(file=discord.File(get_pdf(month,day), "5-A-Day.pdf"))
 
-  else:
+  month = datetime.datetime.now().strftime("%B")
+  day = datetime.datetime.now().strftime("%#d")
+
+  if not args:
+    await ctx.send(file=discord.File(get_pdf(month,day), f"5-A-Day ({month} {day}).pdf"))
+
+  else:  
+
+
+    if args[0].title() in short_months.keys():
+      month = short_months[args[0].title()]
     
+    elif args[0].title() in short_months.values():
+      month = args[0]
+    
+    if len(args) > 1:
       
-    month = arg
-    day = 10
-    await ctx.send(file=discord.File(get_pdf(month,day), "5-A-Day.pdf"))
+      day = args[1]
+
+    if args[0] == 'help':
+      await ctx.send('''---5-A-DAY BOT HELP---
+*Send !corbett to get current worksheet
+*Send !corbett [month] [day] to get specific worksheet
+
+Here is today's worksheet :D''')
+
+
+
+      
+    await ctx.send(file=discord.File(get_pdf(month,day), f"5-A-Day ({month} {day}).pdf"))
 
 
 if TOKEN:
