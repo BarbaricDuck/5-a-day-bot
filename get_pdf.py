@@ -22,7 +22,8 @@ def get_pdf(month,day):
   elif month in ['September','October']:
     response = requests.get(f"https://corbettmaths.com/wp-content/uploads/2019/07/{month}-Higher.pdf")
 
-
+  else:
+    response = requests.get(f"https://corbettmaths.com/wp-content/uploads/2019/03/{month}-Higher.pdf")
   
   input_file = PdfFileReader(BytesIO(response.content))
 
