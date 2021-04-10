@@ -1,31 +1,49 @@
 import os
 import discord
+from discord.ext import commands
 from get_pdf import get_pdf
 from dotenv import load_dotenv
 import datetime
 
-month = datetime.datetime.now().strftime("%B")
-day = datetime.datetime.now().strftime("%#d")
+
 
 load_dotenv()
 
 TOKEN = os.getenv('TOKEN')
-client = discord.Client()
+bot = commands.Bot(command_prefix='!')
 
-@client.event
+@bot.event
 async def on_ready():
-  print(f'{client.user} has connected to Discord!')
+  print(f'{bot.user} has connected to Discord!')
     
-@client.event
-async def on_message(message):
-  if message.author == client.user:
+# @bot.event
+# async def on_message(message):
+#   if message.author == bot.user:
+#     return
+    
+#   if message.content == '!corbett':
+#     
+
+@bot.command()
+async def corbett(ctx,arg):
+  if ctx.author == bot.user:
     return
+  
+  if arg == 'today':
+    month = datetime.datetime.now().strftime("%B")
+    day = datetime.datetime.now().strftime("%#d")
     
-  if message.content == '!corbett':
-    await message.channel.send(file=discord.File(get_pdf(month,day), "5-A-Day.pdf"))   
+    await ctx.send(file=discord.File(get_pdf(month,day), "5-A-Day.pdf"))
+
+  else:
+    
+      
+    month = arg
+    day = 10
+    await ctx.send(file=discord.File(get_pdf(month,day), "5-A-Day.pdf"))
 
 
 if TOKEN:
-  client.run(TOKEN)
+  bot.run(TOKEN)
 else:
   print("Please provide a token in .env")
