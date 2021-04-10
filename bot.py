@@ -5,7 +5,7 @@ from get_pdf import get_pdf
 from dotenv import load_dotenv
 import datetime
 
-short_months = {'Dec':'December', 'Jan':'January', 'Feb':'Febuary', 'Mar':'March', 'Apr':'April', 'May':'May', 'Jun':'June', 'Jul':'July', 'Aug':'August', 'Sep':'September', 'Oct':'October', 'Nov':'November'}
+short_months = {'Dec':'December', 'Jan':'January', 'Feb':'February', 'Mar':'March', 'Apr':'April', 'May':'May', 'Jun':'June', 'Jul':'July', 'Aug':'August', 'Sep':'September', 'Oct':'October', 'Nov':'November'}
 
 
 load_dotenv()
@@ -16,19 +16,14 @@ bot = commands.Bot(command_prefix='!')
 @bot.event
 async def on_ready():
   print(f'{bot.user} has connected to Discord!')
-    
-# @bot.event
-# async def on_message(message):
-#   if message.author == bot.user:
-#     return
-    
-#   if message.content == '!corbett':
-#     
+
 
 @bot.command()
 async def corbett(ctx,*args):
   if ctx.author == bot.user:
     return
+
+
 
   month = datetime.datetime.now().strftime("%B")
   day = datetime.datetime.now().strftime("%#d")
@@ -38,7 +33,6 @@ async def corbett(ctx,*args):
 
   else:  
 
-
     if args[0].title() in short_months.keys():
       month = short_months[args[0].title()]
     
@@ -46,15 +40,25 @@ async def corbett(ctx,*args):
       month = args[0]
     
     if len(args) > 1:
-      
-      day = args[1]
+
+      if any(char.isdigit() for char in args[1]) is True:
+        if int(args[1]) > 0:
+          if month in ['January','March','May','July','August','October','December']:
+            if int(args[1]) < 32:
+              day = args[1]
+          elif month in ['April','June','September','November']:
+            if int(args[1]) < 31:
+              day = args[1]
+          else:
+            if int(args[1]) < 30:
+              day = args[1]
 
     if args[0] == 'help':
-      await ctx.send('''---5-A-DAY BOT HELP---
+      await ctx.send('''```---5-A-DAY BOT HELP---
 *Send !corbett to get current worksheet
 *Send !corbett [month] [day] to get specific worksheet
 
-Here is today's worksheet :D''')
+Here is today's worksheet :D```''')
 
 
 
