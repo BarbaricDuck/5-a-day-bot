@@ -10,7 +10,7 @@ short_months = {'Dec':'December', 'Jan':'January', 'Feb':'February', 'Mar':'Marc
 
 
 
-s3 = S3Connection(os.environ['S3_TOKEN']
+s3 = S3Connection(os.environ['88a9d7c3-47cb-4ca3-8faf-56d47a11f622'], os.environ['TOKEN'])
 bot = commands.Bot(command_prefix='!')
 
 @bot.event
