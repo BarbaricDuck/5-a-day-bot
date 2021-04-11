@@ -2,15 +2,15 @@ import os
 import discord
 from discord.ext import commands
 from get_pdf import get_pdf
-from dotenv import load_dotenv
 import datetime
+from boto.s3.connection import S3Connection
+
 
 short_months = {'Dec':'December', 'Jan':'January', 'Feb':'February', 'Mar':'March', 'Apr':'April', 'May':'May', 'Jun':'June', 'Jul':'July', 'Aug':'August', 'Sep':'September', 'Oct':'October', 'Nov':'November'}
 
 
-load_dotenv()
 
-TOKEN = os.getenv('TOKEN')
+TOKEN = S3Connection(os.environ['TOKEN'])
 bot = commands.Bot(command_prefix='!')
 
 @bot.event
