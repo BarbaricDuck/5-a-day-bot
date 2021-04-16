@@ -10,12 +10,8 @@ short_months = {'Dec':'December', 'Jan':'January', 'Feb':'February', 'Mar':'Marc
 
 
 
-TOKEN = '88a9d7c3-47cb-4ca3-8faf-56d47a11f622'
-
-
 
 bot = commands.Bot(command_prefix='!')
-
 
 @bot.event
 async def on_ready():
