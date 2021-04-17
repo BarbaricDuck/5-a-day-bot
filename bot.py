@@ -5,6 +5,8 @@ from get_pdf import get_pdf
 from dotenv import load_dotenv
 import datetime
 
+print("Hello, I'm running!")
+
 short_months = {'Dec':'December', 'Jan':'January', 'Feb':'February', 'Mar':'March', 'Apr':'April', 'May':'May', 'Jun':'June', 'Jul':'July', 'Aug':'August', 'Sep':'September', 'Oct':'October', 'Nov':'November'}
 
 
