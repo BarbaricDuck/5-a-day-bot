@@ -39,7 +39,7 @@ async def corbett(ctx,*args):
       month = short_months[args[0].title()]
     
     elif args[0].title() in short_months.values():
-      month = args[0]
+      month = args[0].title()
     
     if len(args) > 1:
 
