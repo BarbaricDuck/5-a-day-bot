@@ -57,6 +57,9 @@ async def corbett(ctx,*args):
 
     if args[0] == 'help':
       await ctx.send('''```---5-A-DAY BOT HELP---
+
+Github: https://github.com/bengroves2004/5-a-day-bot
+
 *Send !corbett to get current worksheet
 *Send !corbett [month] [day] to get specific worksheet
 
