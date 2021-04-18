@@ -35,7 +35,7 @@ async def corbett(ctx,*args):
 
   else:  
 
-    if args[0].title() == 'Answers':
+    if 'answers' in args:
       answers = True
 
     if args[0].title() in short_months.keys():
@@ -58,9 +58,6 @@ async def corbett(ctx,*args):
             if int(args[1]) < 30:
               day = args[1]
 
-    if len(args) > 2:
-      if args[2].title == 'Answers':
-        answers = True
 
     if args[0] == 'help':
       await ctx.send('''```---5-A-DAY BOT HELP---
