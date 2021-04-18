@@ -31,7 +31,7 @@ async def corbett(ctx,*args):
   day = datetime.datetime.now().strftime("%#d")
 
   if not args:
-    await ctx.send(file=discord.File(get_pdf(month,day), f"5-A-Day ({month} {day}).pdf"))
+    await ctx.send(file=discord.File(get_pdf(month,day,answers), f"5-A-Day ({month} {day}).pdf"))
 
   else:  
 
@@ -69,12 +69,11 @@ Github: https://github.com/bengroves2004/5-a-day-bot
 
 *Send !corbett to get current worksheet
 *Send !corbett [month] [day] to get specific worksheet
+*Send !corbett answers to get current answers
+*Send !corbett [month] [day] answers to get current answers
 
 Here is today's worksheet :D```''')
 
-
-
-      
     await ctx.send(file=discord.File(get_pdf(month,day,answers), f"5-A-Day ({month} {day}).pdf"))
 
 if TOKEN:
