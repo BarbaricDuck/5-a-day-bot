@@ -25,7 +25,7 @@ async def corbett(ctx,*args):
   if ctx.author == bot.user:
     return
 
-
+  answers = False
 
   month = datetime.datetime.now().strftime("%B")
   day = datetime.datetime.now().strftime("%#d")
@@ -34,6 +34,9 @@ async def corbett(ctx,*args):
     await ctx.send(file=discord.File(get_pdf(month,day), f"5-A-Day ({month} {day}).pdf"))
 
   else:  
+
+    if args[0].title() == 'Answers':
+      answers = True
 
     if args[0].title() in short_months.keys():
       month = short_months[args[0].title()]
@@ -55,6 +58,10 @@ async def corbett(ctx,*args):
             if int(args[1]) < 30:
               day = args[1]
 
+    if len(args) > 2:
+      if args[2].title == 'Answers':
+        answers = True
+
     if args[0] == 'help':
       await ctx.send('''```---5-A-DAY BOT HELP---
 
@@ -68,7 +75,7 @@ Here is today's worksheet :D```''')
 
 
       
-    await ctx.send(file=discord.File(get_pdf(month,day), f"5-A-Day ({month} {day}).pdf"))
+    await ctx.send(file=discord.File(get_pdf(month,day,answers), f"5-A-Day ({month} {day}).pdf"))
 
 if TOKEN:
   bot.run(TOKEN)
