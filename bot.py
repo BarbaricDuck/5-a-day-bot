@@ -74,7 +74,7 @@ Github: https://github.com/bengroves2004/5-a-day-bot
 
 Here is today's worksheet :D```''')
 
-    await ctx.send(file=discord.File(get_pdf(month,day,answers), f"5-A-Day ({month} {day}).pdf"))
+    await ctx.send(file=discord.File(get_pdf(month,day,answers), f"5-A-Day_{month}_{day}{'_Answers' if answers else ''}.pdf"))
 
 if TOKEN:
   bot.run(TOKEN)
